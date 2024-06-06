@@ -74,8 +74,8 @@ const resolvers = {
         //Medida_CookBook
         addMedida_CookBook: async (_, {medida}) => {
             const [id_medida] = await db('Medida_CookBook').insert({medida});
-            const newSaleRJ = await db('Medida_CookBook').where({id_medida}).first();
-            return newSaleRJ;
+            const newMedida_CookBook = await db('Medida_CookBook').where({id_medida}).first();
+            return newMedida_CookBook;
         },
 
         updateMedida_CookBook: async (_, {id_medida, medida}) => {
@@ -84,7 +84,7 @@ const resolvers = {
             return updatedMedida_CookBook;
         },
 
-        deleteSaleRJ: async (_, { id_medida }) => {
+        deleteMedida_CookBook: async (_, { id_medida }) => {
             await db('Medida_CookBook').where({id_medida}).del();
             return id_medida;
         },
