@@ -66,13 +66,13 @@ type Categoria_CookBook {
 }
 
 type Query {
-    poet: [PoetRJ]
-    poem: [PoemRJ]
-    poem_publication: [Poem_PublicationRJ]
-    publication: [PublicationRJ]
-    sale_publication: [Sale_PublicationRJ]
-    sale: [SaleRJ]
-    getSale_CustomerRJSP: [Sale_CustomerRJ]
-    customer: [CustomerRJ]
+    usuario: [Usuario_CookBook]
+    receta: [Receta_CookBook]
+    receta_ingrediente: [Receta_Ingrediente_CookBook]
+    ingrediente: [Ingrediente_CookBook]
+    medida: [Medida_CookBook]
+    categoria: [Categoria_CookBook]
 }
 `;
+
+module.exports = typeDefs;
