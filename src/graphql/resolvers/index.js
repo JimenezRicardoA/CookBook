@@ -8,6 +8,9 @@ const resolvers = {
         ingrediente: async () => await db.select().table('Ingrediente_CookBook'),
         medida: async () => await db.select().table('Medida_CookBook'),
         categoria: async () => await db.select().table('Categoria_CookBook'),
+        preparacion: async () => await db.select().table('Preparacion_CookBook'),
+        utensilio: async () => await db.select().table('Utensilio_CookBook'),
+        receta_utensilio: async () => await db.select().table('Receta_Utensilio_CookBook'),
     },
 
     Mutation: {
@@ -105,6 +108,48 @@ const resolvers = {
         deleteCategoria_CookBook: async (_, { id_categoria }) => {
             await db('Categoria_CookBook').where({id_categoria}).del();
             return id_categoria;
+        },
+
+        //Preparacion_CookBook
+        addPreparacion_CookBook: async (_, {id_receta, paso, descripcion}) => {
+            const [id_preparacion] = await db('Preparacion_CookBook').insert({id_receta, paso, descripcion});
+            const newPreparacion_CookBook = await db('Preparacion_CookBook').where({id_preparacion}).first();
+            return newPreparacion_CookBook;
+        },
+
+        updatePreparacion_CookBook: async (_, {id_preparacion, id_receta, paso, descripcion}) => {
+            await db('Preparacion_CookBook').where({id_preparacion}).update({id_receta, paso, descripcion});
+            const updatedPreparacion_CookBook = await db('Preparacion_CookBook').where({id_preparacion}).first();
+            return updatedPreparacion_CookBook;
+        },
+
+        deletePreparacion_CookBook: async (_, { id_preparacion }) => {
+            await db('Preparacion_CookBook').where({id_preparacion}).del();
+            return id_preparacion;
+        },
+
+        //Utensilio_CookBook
+        addUtensilio_CookBook: async (_, {utensilio, descripcion}) => {
+            const [id_utensilio] = await db('Utensilio_CookBook').insert({utensilio, descripcion});
+            const newUtensilio_CookBook = await db('Utensilio_CookBook').where({id_utensilio}).first();
+            return newUtensilio_CookBook;
+        },
+
+        updateUtensilio_CookBook: async (_, {id_utensilio, utensilio, descripcion}) => {
+            await db('Utensilio_CookBook').where({id_utensilio}).update({utensilio, descripcion});
+            const updatedPreparacion_CookBook = await db('Utensilio_CookBook').where({id_utensilio}).first();
+            return updatedPreparacion_CookBook;
+        },
+
+        deleteUtensilio_CookBook: async (_, { id_utensilio }) => {
+            await db('Utensilio_CookBook').where({id_utensilio}).del();
+            return id_utensilio;
+        },
+
+        //Receta_Ingrediente_CookBook
+        deleteReceta_Utensilio_CookBook: async (_, {id_receta, id_utensilio}) => {
+            await db('Receta_Ingrediente_CookBook').where({id_receta, id_utensilio}).del();
+            return id_receta, id_utensilio;
         },
     },
 };

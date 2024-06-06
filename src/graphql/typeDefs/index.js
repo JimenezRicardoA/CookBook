@@ -10,7 +10,7 @@ type Mutation {
     updateReceta_CookBook(id_receta: Int!, receta: String!, tiempo_preparacion: Int!, porciones: Int, descripcion: String!): Receta_CookBook!
     deleteReceta_CookBook(id_receta: Int!): ID!
 
-    deleteReceta_Ingrediente_CookBook(id_receta: Int!, id_ingrediente: Int!, id_medida: Int!, Cantidad: Int): Receta_Ingrediente_CookBook!
+    deleteReceta_Ingrediente_CookBook(id_receta: ID!, id_ingrediente: ID!, id_medida: ID!, Cantidad: Int): Receta_Ingrediente_CookBook!
 
     addIngrediente_CookBook(ingrediente: String, id_categoria: String): Ingrediente_CookBook!
     updateIngrediente_CookBook(id_ingrediente: Int!, ingrediente: String, id_categoria: String): Ingrediente_CookBook!
@@ -23,6 +23,16 @@ type Mutation {
     addCategoria_CookBook(categoria: Int): Categoria_CookBook!
     updateCategoria_CookBook(id_categoria: ID!, categoria: Int): Categoria_CookBook!
     deleteCategoria_CookBook(id_categoria: ID!): ID!
+
+    addPreparacion_CookBook(id_receta: ID, paso: Int, descripcion: String!): Preparacion_CookBook!
+    updatePreparacion_CookBook(id_preparacion: ID!, id_receta: ID, paso: Int, descripcion: String!): Preparacion_CookBook!
+    deletePreparacion_CookBook(id_preparacion: ID!): ID!
+
+    addUtensilio_CookBook(utensilio: String!, descripcion: String): Utensilio_CookBook!
+    updateUtensilio_CookBook(id_utensilio: ID!, utensilio: String!, descripcion: String): Utensilio_CookBook!
+    deleteUtensilio_CookBook(id_utensilio: ID!): ID!
+
+    deleteReceta_Utensilio_CookBook(id_receta: ID!, id_utensilio: ID!): Receta_Utensilio_CookBook!
 }
 
 type Usuario_CookBook{
@@ -65,6 +75,24 @@ type Categoria_CookBook {
     categoria: Int
 }
 
+type Preparacion_CookBook{
+    id_preparacion: ID!
+    id_receta: ID!
+    paso: Int!
+    descripcion: String!
+}
+
+type Utensilio_CookBook {
+    id_utensilio: ID!
+    utensilio: String!
+    descripcion: String
+}
+
+type Receta_Utensilio_CookBook {
+    id_receta: ID!
+    id_utensilio: ID!
+}
+
 type Query {
     usuario: [Usuario_CookBook]
     receta: [Receta_CookBook]
@@ -72,6 +100,9 @@ type Query {
     ingrediente: [Ingrediente_CookBook]
     medida: [Medida_CookBook]
     categoria: [Categoria_CookBook]
+    preparacion: [Preparacion_CookBook]
+    utensilio: [Utensilio_CookBook]
+    receta_utensilio: [Receta_Utensilio_CookBook]
 }
 `;
 
