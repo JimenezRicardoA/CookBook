@@ -6,10 +6,26 @@ const resolvers = {
         receta: async () => await db.select().table('Receta_CookBook'),
         receta_ingrediente: async () => await db.select().table('Receta_Ingrediente_CookBook'),
         ingrediente: async () => await db.select().table('Ingrediente_CookBook'),
+        getIngredientes: async () => {
+            const result = await db.raw('Call getIngredientes');
+            const view_ingredientes = result[0][0];
+            return view_ingredientes;
+        },
         medida: async () => await db.select().table('Medida_CookBook'),
         categoria: async () => await db.select().table('Categoria_CookBook'),
         preparacion: async () => await db.select().table('Preparacion_CookBook'),
+        getPreparacopm: async () => {
+            const result = await db.raw('Call getPreparacion');
+            const view_preparacion = result[0][0];
+            return view_preparacion;
+        },
+        receta_utensilio: async () => await db.select().table('Receta_Utensilio_CookBook'),
         utensilio: async () => await db.select().table('Utensilio_CookBook'),
+        getUtensilio: async () => {
+            const result = await db.raw('Call getUtensilio');
+            const view_utensilio = result[0][0];
+            return view_utensilio;
+        },
         receta_utensilio: async () => await db.select().table('Receta_Utensilio_CookBook'),
     },
 

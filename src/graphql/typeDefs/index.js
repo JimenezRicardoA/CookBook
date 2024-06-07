@@ -65,6 +65,14 @@ type Ingrediente_CookBook {
     id_categoria: String
 }
 
+type view_ingredientes{
+    receta: String
+    ingrediente: String
+    categoria: String
+    medida: String
+    Cantidad: Int
+}
+
 type Medida_CookBook {
     id_medida: ID!
     medida: String
@@ -72,7 +80,7 @@ type Medida_CookBook {
 
 type Categoria_CookBook {
     id_categoria: ID!
-    categoria: Int
+    categoria: String
 }
 
 type Preparacion_CookBook{
@@ -82,10 +90,26 @@ type Preparacion_CookBook{
     descripcion: String!
 }
 
+type view_preparacion{
+    receta: String
+    paso: Int
+    descripcion: String
+}
+
+type Receta_Utensilio_CookBook {
+    id_receta: ID!
+    id_utensilio: ID!
+}
+
 type Utensilio_CookBook {
     id_utensilio: ID!
     utensilio: String!
     descripcion: String
+}
+
+type view_utensilio{
+    receta: String
+    utensilio: String
 }
 
 type Receta_Utensilio_CookBook {
@@ -98,11 +122,14 @@ type Query {
     receta: [Receta_CookBook]
     receta_ingrediente: [Receta_Ingrediente_CookBook]
     ingrediente: [Ingrediente_CookBook]
+    getIngredientes: [view_ingredientes]
     medida: [Medida_CookBook]
     categoria: [Categoria_CookBook]
     preparacion: [Preparacion_CookBook]
-    utensilio: [Utensilio_CookBook]
+    getPreparacopm: [view_preparacion]
     receta_utensilio: [Receta_Utensilio_CookBook]
+    utensilio: [Utensilio_CookBook]
+    getUtensilio: [view_utensilio]
 }
 `;
 
